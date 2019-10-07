@@ -1,10 +1,10 @@
 {
   "BestLimitAlgo": {
-    "enable": false,
+    "enable": true,
     "class":"com.tigerbrokers.quant.algorithm.algos.BestLimitAlgo",
     "direction": "BUY",
     "volume": 100,
-    "symbol": "00700"
+    "symbol": "AAPL"
   },
   "DmaAlgo": {
     "enable": false,
@@ -14,7 +14,7 @@
     "volume": 100
   },
   "MacdAlgo": {
-    "enable": true,
+    "enable": false,
     "class":"com.tigerbrokers.quant.algorithm.algos.MacdAlgo",
     "symbol": "SPY",
     "bars": 300

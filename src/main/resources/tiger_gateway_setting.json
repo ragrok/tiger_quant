@@ -4,7 +4,7 @@
   "apiLogPath": "log/",
   "serverUrl": "https://openapi.itiger.com/gateway",
   "socketUrl": "wss://openapi.itiger.com:8887/stomp",
-  "tigerId": "",
-  "account": "",
-  "privateKey": ""
+  "tigerId": "20150487",
+  "account": "20191007210344510",
+  "privateKey": "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAOOjEltCDAjW1RNA0YbvIPU+jaEaMU9axrtYD1DhLYEefFprD+plFek4QdOOc5Kge2afNHacnCuV+bP+SY5Q5yf7AsWTdLwzbCWcDkBvLz469AbrerqKDeTJJxXkKhS+jI5yysUsOuNiypK1lPeXVsJGHS4qgESyMlgcpkXSfV2lAgMBAAECgYAP0riGbmdev+wsu+80lW+xjGkU3zi5PuKciCj8YsKifIeBU3rWPLOStA3jUj4XXZ9mST/A1O8IGpMyX0UmptoCbFxBye9KfBIdpNgmZyX3MvUXYkXRXTvzkXit5TNIXc5yFSAv18vp4IJnCncEB/Y/DTuTb0uf/ygCg3uK4SpgoQJBAOlAjrhu22JA1YOU+awTgqwkXO3N7i7AThTaZqgJGQS7e+aOxmvi4PwTi74ylEZGC99cu2Zqp0KZMkH6xJnVnPUCQQD51lLxVAXizxyQ+BixYs0Cz6UU2Cx6BkJb1Vw2W9g7sh1juupE1s4zHIrH8660YDNhzKIlcLhWgaYCV02YAU/xAkBok6gpapJzt8vCxd022DyC/36mo+iBD3kygkT6W7Ha3FANq7+siTkD66OAr96orykNiN8AaRr6kgLlcBALRKmtAkBqDOMaU4tIEphSpS1+Jq1VcyTk6zo99eg3KSNCY8wu0tWM3uvQmsneglAavkK7iFZnPkDZ2bY16kS4m6xxSKVRAkEAqeaaFnYcol580qTvupULUO11fJb1pKGZ6hWAmVJPKuXGVHzQH5AOw3EM7ppq8gJBA+JcLtnW4wA8VwK4gz6sOg=="
 }
