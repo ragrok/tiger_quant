@@ -25,9 +25,9 @@ public class DmaAlgo extends AlgoTemplate {
 
   @Override
   public void onStart() {
-    direction = (String) settings.get("direction");
-    price = (Double) settings.get("price");
-    volume = (Integer) settings.get("volume");
+    direction = String.valueOf(settings.get("direction"));
+    price = Double.valueOf(settings.get("price").toString());
+    volume = Integer.valueOf( settings.get("volume").toString());
   }
 
   @Override
