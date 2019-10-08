@@ -9,6 +9,7 @@ import com.tigerbrokers.quant.model.data.Asset;
 import com.tigerbrokers.quant.model.data.Contract;
 import com.tigerbrokers.quant.model.data.Order;
 import com.tigerbrokers.quant.model.data.Position;
+import com.tigerbrokers.quant.storage.dao.SymbolInfoDAO;
 import com.tigerbrokers.stock.openapi.client.constant.ApiServiceType;
 import com.tigerbrokers.stock.openapi.client.https.client.TigerHttpClient;
 import com.tigerbrokers.stock.openapi.client.https.domain.contract.item.ContractItem;
@@ -32,10 +33,9 @@ import com.tigerbrokers.stock.openapi.client.struct.enums.SecType;
 import com.tigerbrokers.stock.openapi.client.struct.enums.TimeInForce;
 import com.tigerbrokers.stock.openapi.client.util.builder.AccountParamBuilder;
 import com.tigerbrokers.stock.openapi.client.util.builder.TradeParamBuilder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.*;
 
 /**
  * Description:
@@ -43,6 +43,7 @@ import java.util.Map;
  * @author kevin
  * @date 2019/08/16
  */
+@Slf4j
 public class TigerTradeApi implements TradeApi {
 
   private TigerHttpClient client;
@@ -365,8 +366,9 @@ public class TigerTradeApi implements TradeApi {
     }
 
     List<Contract> contracts = new ArrayList<>();
+    SymbolInfoDAO symbolInfoDAO = new SymbolInfoDAO();
     if (secType == SecType.STK) {
-      QuoteSymbolResponse symbolResponse = client.execute(QuoteSymbolRequest.newRequest(Market.US));
+      QuoteSymbolResponse symbolResponse = client.execute(QuoteSymbolRequest.newRequest(Market.ALL));
       if (!symbolResponse.isSuccess()) {
         throw new TigerQuantException("get symbols is null");
       }
@@ -377,12 +379,22 @@ public class TigerTradeApi implements TradeApi {
         List<String> subList = symbols.subList(index, index + 50 > end ? end : index + 50);
         ContractResponse response =
             client.execute(ContractsRequest.newRequest(new ContractsModel(account, subList, secType.name())));
-        if (!response.isSuccess()) {
+          try {
+              Thread.sleep(1 * 1000);
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
+          if (!response.isSuccess()) {
           throw new TigerQuantException("get contracts error:" + response.getMessage());
         }
         List<ContractItem> items = response.getItems();
+        log.info("items:{},index:{}",JSON.toJSONString(items),subList.size());
         if (items != null) {
           contracts.addAll(Contract.toContracts(items));
+          //将合约信息保存数据库
+          for (ContractItem item : items){
+            symbolInfoDAO.saveSymbol(item);
+          }
         }
         index += 50;
       }
@@ -398,7 +410,6 @@ public class TigerTradeApi implements TradeApi {
     if (contracts.isEmpty()) {
       throw new TigerQuantException("get contracts is null");
     }
-
     return contracts;
   }
 

@@ -99,11 +99,13 @@ public class TigerGateway extends Gateway {
 
   @Override
   public void connect() {
-    SecType secType = SecType.FUT;
-    queryContract(secType);
-    queryAsset(secType);
-    queryOrder(secType);
-    queryPosition(secType);
+    SecType[] secTypes = new SecType[]{SecType.FUT,SecType.STK};
+    for (SecType secType : secTypes){
+      queryContract(secType);
+      queryAsset(secType);
+      queryOrder(secType);
+      queryPosition(secType);
+    }
     queryAccount();
   }
 
