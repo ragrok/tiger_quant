@@ -30,9 +30,7 @@ public interface SymbolInfoMapper {
             "<if test='shortable != null' >f_shortable,</if>" +
             "<if test='longMaintenanceMargin != null' >f_long_maintenance_margin,</if>" +
             "f_contract_id,f_identifier,f_symbol,f_sec_type,f_exchange,f_market,f_primary_exchange,f_currency,f_local_symbol,f_name,f_tiger_status,f_min_tick,f_trade,f_continuous,f_trading_class" +
-            ")" +
-            " value " +
-            "(" +
+            ")" + " value " + "(" +
             "<if test='expiry != null' >#{expiry,jdbcType=VARCHAR},</if> " +
             "<if test='contractMonth != null' >#{contractMonth,jdbcType=VARCHAR},</if> " +
             "<if test='strike != null' >#{strike,jdbcType=DOUBLE},</if> " +
