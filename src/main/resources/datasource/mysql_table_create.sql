@@ -27,11 +27,11 @@ CREATE TABLE `t_symbol_info` (
   `f_local_symbol` varchar(10) NOT NULL DEFAULT '',
   `f_long_initial_margin` double(4,2) NOT NULL DEFAULT '0.00',
   `f_long_maintenance_margin` double(4,2) NOT NULL DEFAULT '0.00',
-  `f_market` varchar(10) NOT NULL,
+  `f_market` varchar(10) NOT NULL DEFAULT '',
   `f_min_tick` double(4,2) NOT NULL DEFAULT '0.00',
-  `f_name` varchar(255) NOT NULL,
-  `f_primary_exchange` varchar(10) NOT NULL,
-  `f_sec_type` varchar(10) NOT NULL,
+  `f_name` varchar(255) NOT NULL DEFAULT '',
+  `f_primary_exchange` varchar(10) NOT NULL DEFAULT '',
+  `f_sec_type` varchar(10) NOT NULL DEFAULT '',
   `f_short_fee_rate` double(4,2) NOT NULL DEFAULT '0.00',
   `f_short_margin` double(4,2) NOT NULL DEFAULT '0.00',
   `f_shortable` int(10) NOT NULL DEFAULT '0',
@@ -47,4 +47,4 @@ CREATE TABLE `t_symbol_info` (
   PRIMARY KEY (`f_id`),
   UNIQUE KEY `idx_contract_id` (`f_contract_id`) USING BTREE,
   KEY `idx_symbol` (`f_symbol`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=269 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12360 DEFAULT CHARSET=utf8;

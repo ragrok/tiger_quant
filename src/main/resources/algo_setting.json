@@ -7,16 +7,16 @@
     "symbol": "AAPL"
   },
   "DmaAlgo": {
-    "enable": true,
+    "enable": false,
     "class":"com.tigerbrokers.quant.algorithm.algos.DmaAlgo",
     "direction": "BUY",
     "price": 13.2,
     "volume": 100
   },
   "MacdAlgo": {
-    "enable": false,
+    "enable": true,
     "class":"com.tigerbrokers.quant.algorithm.algos.MacdAlgo",
-    "symbol": "SPY",
+    "symbol": "CN1909",
     "bars": 300
   }
 }
