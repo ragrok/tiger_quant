@@ -1,5 +1,6 @@
 package com.tigerbrokers.quant.model.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,107 +13,36 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SymbolInfo extends BaseEntity {
+public class SymbolInfo {
 
-    /**
-     * 用户Id
-     */
-    private String contractId;
-
-    /**
-     * 请求id
-     */
-    private String symbol;
-
-    /**
-     * 请求内容id
-     */
-    private String currency;
-
-    /**
-     * 响应id
-     */
-    private String exchange;
-
-    /**
-     * 响应内容
-     */
+    private Integer contractId;
     private String identifier;
-
-    /**
-     * 费用类型
-     */
-    private String localSymbol;
-
-
-    /**
-     * 用户Id
-     */
-    private double longInitialMargin;
-
-    /**
-     * 请求id
-     */
-    private double longMaintenanceMargin;
-
-    /**
-     * 请求内容id
-     */
-    private String market;
-
-    /**
-     * 响应id
-     */
-    private String minTick;
-
-    /**
-     * 响应内容
-     */
-    private String name;
-
-    /**
-     * 费用类型
-     */
-    private String primaryExchange;
-
-
-    /**
-     * 请求id
-     */
+    private String symbol;
     private String secType;
-
-    /**
-     * 请求内容id
-     */
-    private double shortFeeRate;
-
-    /**
-     * 响应id
-     */
-    private double shortMargin;
-
-    /**
-     * 响应内容
-     */
-    private double shortable;
-
-    /**
-     * 费用类型
-     */
-    private Integer tigerStatus;
-
-    /**
-     * 响应id
-     */
-    private Boolean continuous;
-
-    /**
-     * 响应内容
-     */
-    private Boolean trade;
-
-    /**
-     * 费用类型
-     */
+    private String expiry;
+    private String contractMonth;
+    private Double strike;
+    @JSONField(name = "right")
+    private String right1;
+    private Double multiplier;
+    private String exchange;
+    private String market;
+    private String primaryExchange;
+    private String currency;
+    private String localSymbol;
     private String tradingClass;
+    @JSONField(name = "name")
+    private String name1;
+    private int status;
+    private Double minTick;
+    private Double shortMargin;
+    private Double shortFeeRate;
+    private int shortable;
+    private Double longInitialMargin;
+    private Double longMaintenanceMargin;
+    private String lastTradingDate;
+    private String firstNoticeDate;
+    private Long lastBiddingCloseTime;
+    private boolean trade;
+    private boolean continuous;
 }

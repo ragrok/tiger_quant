@@ -48,6 +48,11 @@
       <artifactId>mybatis</artifactId>
       <version>${org.mybatis.mybatis.version}</version>
     </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>4.6.8</version>
+    </dependency>
   </dependencies>
 
   <build>

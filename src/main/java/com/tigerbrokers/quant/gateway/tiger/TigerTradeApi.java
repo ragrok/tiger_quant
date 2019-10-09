@@ -1,5 +1,6 @@
 package com.tigerbrokers.quant.gateway.tiger;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -9,7 +10,9 @@ import com.tigerbrokers.quant.model.data.Asset;
 import com.tigerbrokers.quant.model.data.Contract;
 import com.tigerbrokers.quant.model.data.Order;
 import com.tigerbrokers.quant.model.data.Position;
+import com.tigerbrokers.quant.model.entity.SymbolInfo;
 import com.tigerbrokers.quant.storage.dao.SymbolInfoDAO;
+import com.tigerbrokers.quant.util.BatchCopyUtil;
 import com.tigerbrokers.stock.openapi.client.constant.ApiServiceType;
 import com.tigerbrokers.stock.openapi.client.https.client.TigerHttpClient;
 import com.tigerbrokers.stock.openapi.client.https.domain.contract.item.ContractItem;
@@ -368,6 +371,9 @@ public class TigerTradeApi implements TradeApi {
     List<Contract> contracts = new ArrayList<>();
     SymbolInfoDAO symbolInfoDAO = new SymbolInfoDAO();
     if (secType == SecType.STK) {
+      List<SymbolInfo> itemList = symbolInfoDAO.queryAllSymbolInfo();
+      log.info("ContractItem is empty:{} ",itemList.isEmpty());
+      if (itemList.isEmpty()){
       QuoteSymbolResponse symbolResponse = client.execute(QuoteSymbolRequest.newRequest(Market.ALL));
       if (!symbolResponse.isSuccess()) {
         throw new TigerQuantException("get symbols is null");
@@ -397,13 +403,17 @@ public class TigerTradeApi implements TradeApi {
           }
         }
         index += 50;
-      }
+      }}
+      List<ContractItem> contractItemList = BatchCopyUtil.copyBachProperties(JSONArray.parseArray(JSON.toJSONString(itemList)),ContractItem.class);
+      log.info("contractItemList First info:{}",JSON.toJSONString(contractItemList.get(0)));
+      contracts.addAll(Contract.toContracts(contractItemList));
     } else {
       FutureExchangeResponse exchangeResponse = client.execute(FutureExchangeRequest.newRequest(secType.name()));
       for (FutureExchangeItem item : exchangeResponse.getFutureExchangeItems()) {
         FutureBatchContractResponse contractResponse =
             client.execute(FutureContractByExchCodeRequest.newRequest(item.getCode()));
         contracts.addAll(Contract.toFuturesContracts(contractResponse.getFutureContractItems()));
+        log.info("items:{},index:{}",JSON.toJSONString(item),exchangeResponse.getFutureExchangeItems().size());
       }
     }
 

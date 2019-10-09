@@ -1,10 +1,11 @@
 package com.tigerbrokers.quant.storage.dao;
 
-import com.tigerbrokers.quant.model.data.Contract;
 import com.tigerbrokers.quant.model.entity.SymbolInfo;
 import com.tigerbrokers.quant.storage.mapper.SymbolInfoMapper;
 import com.tigerbrokers.stock.openapi.client.https.domain.contract.item.ContractItem;
 import org.apache.ibatis.session.SqlSession;
+
+import java.util.List;
 
 /**
  * Description:
@@ -16,17 +17,17 @@ public class SymbolInfoDAO extends BaseDAO {
 
     public boolean saveSymbol(ContractItem item) {
         SqlSession sqlSession = openSession();
-        Integer i = sqlSession.getMapper(SymbolInfoMapper.class).saveSymbol(item);
+        Integer i = sqlSession.getMapper(SymbolInfoMapper.class).saveSymbolInfo(item);
         sqlSession.commit();
         sqlSession.close();
         return i > 0;
     }
 
-    public boolean updateSymbol(ContractItem item) {
+    public List<SymbolInfo> queryAllSymbolInfo() {
         SqlSession sqlSession = openSession();
-        Integer i = sqlSession.getMapper(SymbolInfoMapper.class).updateSymbol(item);
+        List<SymbolInfo> items = sqlSession.getMapper(SymbolInfoMapper.class).queryAllSymbolInfo();
         sqlSession.commit();
         sqlSession.close();
-        return i > 0;
+        return items;
     }
 }

@@ -21,7 +21,7 @@
   </environments>
 
   <mappers>
-    <mapper class="com.tigerbrokers.quant.storage.mapper.BarMapper"/>
-    <mapper class="com.tigerbrokers.quant.storage.mapper.SymbolInfoMapper"/>
+    <mapper class="com.tigerbrokers.quant.storage.mapper.BarMapper" />
+    <mapper resource="mapper/SymbolInfoMapper.xml" />
   </mappers>
 </configuration>

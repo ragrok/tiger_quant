@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tigerbrokers.quant.storage.mapper.SymbolInfoMapper">
+
+    <sql id="symbolFiled">
+        f_contract_id as contractId,
+        f_symbol as identifier,
+        f_currency as currency,
+        f_exchange as exchange,
+        f_identifier as identifier,
+        f_local_symbol as localSymbol,
+        f_long_initial_margin as longInitialMargin,
+        f_long_maintenance_margin as longMaintenanceMargin,
+        f_market as market,
+        f_min_tick as minTick,
+        f_name as name1,
+        f_primary_exchange as primaryExchange,
+        f_sec_type as secType,
+        f_short_fee_rate as shortFeeRate,
+        f_short_margin as shortMargin,
+        f_shortable as shortable,
+        f_tiger_status as status,
+        f_continuous as continuous,
+        f_trade as trade,
+        f_trading_class as tradingClass,
+        f_expiry as expiry,
+        f_contract_month as contractMonth,
+        f_strike as strike,
+        f_right as right1,
+        f_multiplier as multiplier
+    </sql>
+
+    <insert id="saveSymbolInfo" parameterType="com.tigerbrokers.stock.openapi.client.https.domain.contract.item.ContractItem" statementType="PREPARED">
+        insert into t_symbol_info
+        (
+        <if test='expiry != null'>f_expiry,</if>
+        <if test='contractMonth != null'>f_contract_month,</if>
+        <if test='strike != null'>f_strike,</if>
+        <if test='right != null'>f_right,</if>
+        <if test='multiplier != null'>f_multiplier,</if>
+        <if test='shortMargin != null'>f_short_margin,</if>
+        <if test='shortFeeRate != null'>f_short_fee_rate,</if>
+        <if test='longInitialMargin != null'>f_long_initial_margin,</if>
+        <if test='shortable != null'>f_shortable,</if>
+        <if test='longMaintenanceMargin != null'>f_long_maintenance_margin,</if>
+        f_contract_id,f_identifier,f_symbol,f_sec_type,f_exchange,f_market,f_primary_exchange,f_currency,f_local_symbol,f_name,f_tiger_status,f_min_tick,f_trade,f_continuous,f_trading_class
+        ) value (
+        <if test='expiry != null'>#{expiry,jdbcType=VARCHAR},</if>
+        <if test='contractMonth != null'>#{contractMonth,jdbcType=VARCHAR},</if>
+        <if test='strike != null'>#{strike,jdbcType=DOUBLE},</if>
+        <if test='right != null'>#{right,jdbcType=VARCHAR},</if>
+        <if test='multiplier != null'>#{multiplier,jdbcType=DOUBLE},</if>
+        <if test='shortMargin != null'>#{shortMargin,jdbcType=DOUBLE},</if>
+        <if test='shortFeeRate != null'>#{shortFeeRate,jdbcType=DOUBLE},</if>
+        <if test='longInitialMargin != null'>#{longInitialMargin,jdbcType=DOUBLE},</if>
+        <if test='shortable != null'>#{shortable,jdbcType=INTEGER},</if>
+        <if test='longMaintenanceMargin != null'>#{longMaintenanceMargin,jdbcType=DOUBLE},</if>
+        #{contractId},#{identifier},#{symbol},#{secType},#{exchange},#{market},#{primaryExchange},#{currency},#{localSymbol},#{name},#{status},#{minTick},#{trade},#{continuous},#{tradingClass}
+        )
+    </insert>
+
+    <select id="queryAllSymbolInfo" resultType="com.tigerbrokers.quant.model.entity.SymbolInfo" statementType="PREPARED">
+        select
+        <include refid="symbolFiled"/>
+        from t_symbol_info
+    </select>
+</mapper>
