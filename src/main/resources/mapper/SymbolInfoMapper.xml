@@ -5,7 +5,7 @@
 
     <sql id="symbolFiled">
         f_contract_id as contractId,
-        f_symbol as identifier,
+        f_symbol as symbol,
         f_currency as currency,
         f_exchange as exchange,
         f_identifier as identifier,

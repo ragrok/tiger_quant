@@ -403,10 +403,10 @@ public class TigerTradeApi implements TradeApi {
           }
         }
         index += 50;
-      }}
+      }}else {
       List<ContractItem> contractItemList = BatchCopyUtil.copyBachProperties(JSONArray.parseArray(JSON.toJSONString(itemList)),ContractItem.class);
-      log.info("contractItemList First info:{}",JSON.toJSONString(contractItemList.get(0)));
       contracts.addAll(Contract.toContracts(contractItemList));
+      }
     } else {
       FutureExchangeResponse exchangeResponse = client.execute(FutureExchangeRequest.newRequest(secType.name()));
       for (FutureExchangeItem item : exchangeResponse.getFutureExchangeItems()) {
