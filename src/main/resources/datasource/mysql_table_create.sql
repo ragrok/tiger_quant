@@ -1,5 +1,5 @@
-CREATE DATABASE tiger_quant;
-USE tiger_quant;
+CREATE DATABASE tiger;
+USE tiger;
 
 CREATE TABLE `bar` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,

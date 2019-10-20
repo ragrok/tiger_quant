@@ -15,7 +15,7 @@
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost/tiger?useUnicode=yes&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false"/>
         <property name="username" value="root"/>
-        <property name="password" value="123456"/>
+        <property name="password" value="root1234"/>
       </dataSource>
     </environment>
   </environments>

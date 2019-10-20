@@ -14,8 +14,14 @@
     "volume": 100
   },
   "MacdAlgo": {
-    "enable": true,
+    "enable": false,
     "class":"com.tigerbrokers.quant.algorithm.algos.MacdAlgo",
+    "symbol": "CN1910",
+    "bars": 300
+  },
+  "MacdAlgo1": {
+    "enable": true,
+    "class":"com.tigerbrokers.quant.algorithm.algos.MacdAlgo1",
     "symbol": "CN1910",
     "bars": 300
   }
